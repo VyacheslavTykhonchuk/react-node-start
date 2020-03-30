@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from 'react'
+
 const test = async () => {
-  const req = await fetch();
-  const res = await req.json();
-};
+  const req = await fetch('http://localhost:8000/users')
+
+  const res = await req.json()
+}
 const Test = () => {
   useEffect(() => {
-    test();
-  }, []);
+    test()
+  }, [])
 
-  return <div>TestTest</div>;
-};
+  return <div>TestTest</div>
+}
 
-export default Test;
+export default Test
