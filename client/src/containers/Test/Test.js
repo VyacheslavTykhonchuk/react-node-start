@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react'
 
-const test = async () => {
-  const req = await fetch('http://localhost:8000/users')
-
+const test = async onSuccess => {
+  const req = await fetch('http://localhost:5000/users')
   const res = await req.json()
+  onSuccess(JSON.stringify(res))
 }
 const Test = () => {
+  const [label, setLabel] = useState('Load')
+
   useEffect(() => {
-    test()
+    test(setLabel)
   }, [])
 
-  return <div>TestTest</div>
+  return <div>{label}</div>
 }
 
 export default Test

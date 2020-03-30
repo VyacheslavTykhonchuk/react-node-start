@@ -1,8 +1,19 @@
 import express from 'express'
-const router = express.Router()
+import config from '../config'
 
-router.get('/', function (req, res, next) {
-  res.json({ a: 'respond with a resource' })
-})
+const register = handler => {
+  const router = express.Router()
 
-export default router
+  router.get('/', function(req, res, next) {
+    res.json({ title: 'Express' })
+  })
+
+  return router
+}
+
+export default {
+  init(server, handler) {
+    const routes = register(handler)
+    server.use('/users', routes)
+  },
+}

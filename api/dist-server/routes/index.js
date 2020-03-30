@@ -7,16 +7,25 @@ exports["default"] = void 0;
 
 var _express = _interopRequireDefault(require("express"));
 
+var _config = _interopRequireDefault(require("../config"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var router = _express["default"].Router();
-/* GET home page. */
+var register = function register(handler) {
+  var router = _express["default"].Router();
 
-
-router.get("/", function (req, res, next) {
-  res.render("index", {
-    title: "Express"
+  router.get('/', function (req, res, next) {
+    res.json({
+      title: 'Express'
+    });
   });
-});
-var _default = router;
+  return router;
+};
+
+var _default = {
+  init: function init(server, handler) {
+    var routes = register(handler);
+    server.use('/', routes);
+  }
+};
 exports["default"] = _default;
